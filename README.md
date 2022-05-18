@@ -24,18 +24,20 @@ kubectl get pods
 kubectl get svc
 ```
 
-## Installation 
+## Setup 
+
+### Installation 
 
 This has been tested on an M1 Mac
 
-### Docker
+#### Docker
 
 Downloading [docker desktop](https://www.docker.com/products/docker-desktop/)
 
 Start Docker Desktop
 
 
-### Homebrew
+#### Homebrew
 
 The easiest way to get many of the scripts and utilies is to use
 [homebrew](https://brew.sh) I've followed the [untar anywhere](https://docs.brew.sh/Installation#untar-anywhere) approach as this doesn't require admin rights
@@ -45,7 +47,7 @@ Also the `$PATH` variable is set with homebrew at the end so it can't override
 anything that may be important from a security point of view
 
 
-### Minikube
+#### Minikube
 
 Installed using homebrew
 
@@ -61,6 +63,17 @@ brew install kubectx
 ```
 
 
+### Startup
+
+#### Minikube
+
+Start minikube using the following command
+
+```
+minikube start --driver=docker
+```
+
+
 
 ## References
 
@@ -69,3 +82,6 @@ brew install kubectx
 * [Creating a pod](https://kubernetes.io/docs/concepts/workloads/pods/)
 * [Creating a namespace](https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-organizing-with-namespaces)
 * [Services](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/)
+* [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+
+
