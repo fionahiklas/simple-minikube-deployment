@@ -73,6 +73,40 @@ Start minikube using the following command
 minikube start --driver=docker
 ```
 
+Enable the ingress addon
+
+```
+minikube addons enable ingress
+```
+
+TODO: Fix ingress so it doesn't need 80/443 which are privileged ports
+
+
+## Troubleshooting
+
+### Minikube Ingress controller not running
+
+When applying the deployment you get this result
+
+```
+kubectl get ingress
+NAME            CLASS           HOSTS   ADDRESS   PORTS   AGE
+hello-ingress   nginx-example   *                 80      6m16
+```
+
+Check the ingress controller is running
+
+```
+kubectl get pods -n ingress-nginx
+```
+
+If this returns no pods, then delete the ingress and check the instructions
+above for startup of minikube to ensure the ingress addon is running
+
+```
+kubectl delete ingress hello-ingress
+```
+
 
 
 ## References
@@ -84,4 +118,6 @@ minikube start --driver=docker
 * [Services](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/)
 * [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
+### Minikube
 
+* [Ingress controller]()

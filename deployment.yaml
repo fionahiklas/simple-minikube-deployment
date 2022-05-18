@@ -40,7 +40,8 @@ metadata:
 spec:
   ingressClassName: nginx-example
   rules:
-  - http:
+  - host: hello.internal
+    http:
       paths:
       - path: /hello
         pathType: Prefix
