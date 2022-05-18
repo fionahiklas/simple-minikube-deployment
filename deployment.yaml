@@ -14,9 +14,12 @@ metadata:
 spec:
   containers:
   - name: webserver
-    image: nginx:1.14.2
+    image: nginx:1.21.6
     ports:
-    - containerPort: 80
+    - containerPort: 9000
+    env:
+      - name: NGINX_PORT
+        value: "9000"
 ---
 kind: Service
 apiVersion: v1
