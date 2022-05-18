@@ -1,0 +1,31 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: helloworld
+  labels:
+    name: helloworld
+
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: webserver
+  namespace: helloworld
+spec:
+  containers:
+  - name: webserver
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: helloworld
+  name: webservice
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+  selector:
+    name: webserver
