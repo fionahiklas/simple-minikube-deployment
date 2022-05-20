@@ -7,9 +7,11 @@
 
 ## Quick start 
 
+See more detailed instructions below
+
 * Install Docker
 * Install minikube
-* Start minikube
+* Start minikube (ensure ingress addon is enabled)
 * Run the following to create the deployment
 
 ```
@@ -23,6 +25,25 @@ kubens helloworld
 kubectl get pods
 kubectl get svc
 ```
+
+Run this command in a seperate terminal to allow connection to the ingress
+
+```
+minikube service -n ingress-nginx ingress-nginx-controller
+```
+
+Run `ps -ef | grep "docker@127.0.0.1"` to find the port used for proxying the
+ingress and then run a `curl` command to access the nginx server
+
+```
+curl -vvv -H "Host: hello.internal" localhost:55243/hello
+```
+
+Replace `55243` with the actual proxy port
+
+NOTE: Running `minikube tunnel` may also work but this requires admin
+      rights and I was trying to avoid that 
+	  
 
 ## Setup 
 
@@ -79,7 +100,6 @@ Enable the ingress addon
 minikube addons enable ingress
 ```
 
-TODO: Fix ingress so it doesn't need 80/443 which are privileged ports
 
 
 ## Troubleshooting
@@ -118,6 +138,29 @@ kubectl delete ingress hello-ingress
 * [Services](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/)
 * [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
+
+### k8s
+
+* [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+* [Connecting applications with services](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/)
+
 ### Minikube
 
-* [Ingress controller]()
+* [Accessing applications](https://minikube.sigs.k8s.io/docs/handbook/accessing/)
+* [Minikube github repo](https://github.com/kubernetes/minikube)
+* [Setup Ingress controller](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/)
+
+
+### Docker 
+
+* [Accessing HyperKit VM for Docker Desktop on Mac](https://stackoverflow.com/questions/39739560/how-to-access-the-vm-created-by-dockers-hyperkit)
+
+
+### Homebrew
+
+* [List all files in Homebrew package](https://stackoverflow.com/questions/19010784/list-all-files-in-a-homebrew-package)
+
+
+### Ingress Controllers
+
+* [Advanced nginx configuration with annotations](https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/)
