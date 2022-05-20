@@ -137,6 +137,7 @@ kubectl delete ingress hello-ingress
 * [Creating a namespace](https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-organizing-with-namespaces)
 * [Services](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/)
 * [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+* [Define environment variables for container](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/)
 
 
 ### k8s
@@ -149,11 +150,14 @@ kubectl delete ingress hello-ingress
 * [Accessing applications](https://minikube.sigs.k8s.io/docs/handbook/accessing/)
 * [Minikube github repo](https://github.com/kubernetes/minikube)
 * [Setup Ingress controller](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/)
+* [Howto use local docker images with minikube](https://stackoverflow.com/questions/42564058/how-to-use-local-docker-images-with-minikube)
+* [README section on using minikube docker for images](https://github.com/kubernetes/minikube/blob/0c616a6b42b28a1aab8397f5a9061f8ebbd9f3d9/README.md#reusing-the-docker-daemon)
 
 
 ### Docker 
 
 * [Accessing HyperKit VM for Docker Desktop on Mac](https://stackoverflow.com/questions/39739560/how-to-access-the-vm-created-by-dockers-hyperkit)
+* [Image for nginx](https://hub.docker.com/_/nginx)
 
 
 ### Homebrew
@@ -164,3 +168,7 @@ kubectl delete ingress hello-ingress
 ### Ingress Controllers
 
 * [Advanced nginx configuration with annotations](https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/)
+* [Artifact hub - ingress-nginx](https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx)
+* [Change ports ingress controller uses](https://stackoverflow.com/questions/57926545/change-kubernetes-nginx-ingress-controller-ports)
+
+
