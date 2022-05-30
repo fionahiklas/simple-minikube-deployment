@@ -61,7 +61,7 @@ spec:
           service:
             name: hello-service
             port:
-              number: 5000
+              number: 8173
 
 
 
