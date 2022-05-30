@@ -10,5 +10,9 @@ def hello():
     return response
 
 if __name__ == "__main__":
-    app.run()
+    # Needs to listen on all interfaces otherwise the port
+    # redirection doesn't work.  By default Flask binds
+    # only to 127.0.0.1 which can't be accessed from outside
+    # the container
+    app.run(host="0.0.0.0", port=8173)
 

@@ -150,6 +150,22 @@ daemon using the following command
 make buildforlocal
 ```
 
+You can then start a Docker container using the following command
+
+```
+docker run -it -p 5173:8173 pythonhello:0.1.3
+```
+
+Test using curl in another window (the above doesn't detach from the 
+terminal)
+
+```
+curl -vvv 'http://localhost:5173?name=Vimes'
+```
+
+The container can be terminated using CTRL-C in the terminal used 
+to run the docker command above.
+
 
 ## Troubleshooting
 
@@ -229,6 +245,7 @@ kubectl delete ingress hello-ingress
 * [Flask documentation](https://flask.palletsprojects.com/en/2.1.x/)
 * [How to run a flask application](https://www.twilio.com/blog/how-run-flask-application)
 * [Return JSON from Flask](https://stackoverflow.com/questions/13081532/how-to-return-a-dict-as-a-json-response-from-a-flask-view)
+* [Change host and port on Flask](https://stackoverflow.com/questions/41940663/how-can-i-change-the-host-and-port-that-the-flask-command-uses)
 
 
 ### Makefile

@@ -23,10 +23,10 @@ spec:
     spec:
       containers:
       - name: hello-pod
-        image: pythonhello:0.1.1
+        image: pythonhello:0.1.3
         imagePullPolicy: never
         ports:
-          - containerPort: 5000
+          - containerPort: 8173
 ---
 kind: Service
 apiVersion: v1
@@ -37,7 +37,7 @@ metadata:
     run: hello-service
 spec:
   ports:
-  - port: 5000
+  - port: 8173
     protocol: TCP
   selector:
     run: hello-pod
