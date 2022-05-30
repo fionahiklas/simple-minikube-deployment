@@ -4,3 +4,7 @@
 *\#
 *.bak
 
+# Python
+.matrix
+
+

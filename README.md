@@ -12,6 +12,12 @@ See more detailed instructions below
 * Install Docker
 * Install minikube
 * Start minikube (ensure ingress addon is enabled)
+* Run following to build Docker image
+
+```
+
+```
+
 * Run the following to create the deployment
 
 ```
@@ -101,6 +107,24 @@ minikube addons enable ingress
 ```
 
 
+### Development 
+
+#### Python setup
+
+Using Python3 run the following commands under `service/python`
+
+```
+python3 -mvenv .matrix
+. .matrix/bin/activate
+pip install -r requirements
+```
+
+To setup the initial packages needed for the code ran this:
+
+```
+pip install flask && pip freeze > requirements.txt
+```
+
 
 ## Troubleshooting
 
@@ -171,4 +195,8 @@ kubectl delete ingress hello-ingress
 * [Artifact hub - ingress-nginx](https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx)
 * [Change ports ingress controller uses](https://stackoverflow.com/questions/57926545/change-kubernetes-nginx-ingress-controller-ports)
 
+
+### Python
+
+* [Creating requirements.txt from pip](https://stackoverflow.com/questions/19135867/what-is-pips-equivalent-of-npm-install-package-save-dev)
 
