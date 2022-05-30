@@ -2,12 +2,15 @@
 
 ## Overview
 
+Simple test of Minikube deploying basic Hello World applications.
 
+Tested on M1 Mac initially and partially on x86 Mac both running
+the latest version of MacOS.
 
 
 ## Quick start 
 
-See more detailed instructions below
+See more detailed instructions below in the [setup](#Setup) section
 
 * Install Docker
 * Install minikube
@@ -51,7 +54,11 @@ Replace `55243` with the actual proxy port
 
 NOTE: Running `minikube tunnel` may also work but this requires admin
       rights and I was trying to avoid that 
-	  
+
+TODO: Figure out if there is a better way to make this tunnel/proxy work!
+TODO: Test this on Linux rather than MacOS as that might remove a layer of
+indirection for the networking
+
 
 ## Setup 
 
