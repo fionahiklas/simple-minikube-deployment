@@ -16,6 +16,8 @@ See more detailed instructions below
 
 ```
 cd service/python
+make buildforminikube
+cd ../..
 ```
 
 * Run the following to create the deployment
@@ -167,6 +169,21 @@ The container can be terminated using CTRL-C in the terminal used
 to run the docker command above.
 
 
+#### Minikube Docker Image
+
+This can be built using the following
+
+```
+make buildforminikube
+```
+
+You can check that the image has been built using 
+
+```
+make checkminikubeimages
+```
+
+
 ## Troubleshooting
 
 ### Minikube Ingress controller not running
@@ -223,6 +240,7 @@ kubectl delete ingress hello-ingress
 
 * [Accessing HyperKit VM for Docker Desktop on Mac](https://stackoverflow.com/questions/39739560/how-to-access-the-vm-created-by-dockers-hyperkit)
 * [Image for nginx](https://hub.docker.com/_/nginx)
+* [Docker and localhost](https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach)
 
 
 ### Homebrew

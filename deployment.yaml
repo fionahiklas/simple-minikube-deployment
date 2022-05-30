@@ -23,8 +23,8 @@ spec:
     spec:
       containers:
       - name: hello-pod
-        image: pythonhello:0.1.3
-        imagePullPolicy: never
+        image: pythonhello:0.1.4
+        imagePullPolicy: Never
         ports:
           - containerPort: 8173
 ---
