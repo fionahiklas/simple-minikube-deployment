@@ -15,7 +15,7 @@ See more detailed instructions below
 * Run following to build Docker image
 
 ```
-
+cd service/python
 ```
 
 * Run the following to create the deployment
@@ -55,13 +55,15 @@ NOTE: Running `minikube tunnel` may also work but this requires admin
 
 ### Installation 
 
-This has been tested on an M1 Mac
+This has been tested on an M1 Mac and an old x86 Mac, both running 
+MacOS 12.4.
+
 
 #### Docker
 
 Downloading [docker desktop](https://www.docker.com/products/docker-desktop/)
 
-Start Docker Desktop
+Start Docker Desktop from the Launcher
 
 
 #### Homebrew
@@ -123,6 +125,29 @@ To setup the initial packages needed for the code ran this:
 
 ```
 pip install flask && pip freeze > requirements.txt
+```
+
+#### Testing Service 
+
+The service can be run locally with either 
+
+* `python service.py`
+* `./service.py`
+
+You can test it's working using curl 
+
+```
+curl -vvv 'http://localhost:5000?name=sheila'
+```
+
+
+#### Local Docker image
+
+You can build the docker image for the service using the local Docker 
+daemon using the following command
+
+```
+make buildforlocal
 ```
 
 
@@ -199,4 +224,16 @@ kubectl delete ingress hello-ingress
 ### Python
 
 * [Creating requirements.txt from pip](https://stackoverflow.com/questions/19135867/what-is-pips-equivalent-of-npm-install-package-save-dev)
+* [Official Docker image](https://hub.docker.com/_/python)
+* [Flask on pypi](https://pypi.org/project/Flask/)
+* [Flask documentation](https://flask.palletsprojects.com/en/2.1.x/)
+* [How to run a flask application](https://www.twilio.com/blog/how-run-flask-application)
+* [Return JSON from Flask](https://stackoverflow.com/questions/13081532/how-to-return-a-dict-as-a-json-response-from-a-flask-view)
 
+
+### Makefile
+
+* [Using variables](https://ftp.gnu.org/old-gnu/Manuals/make-3.79.1/html_chapter/make_6.html)
+* [Phony targets](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html)
+* [Adding help for Makefile targets](https://gist.github.com/prwhite/8168133)
+* [Improved help generator](https://www.freecodecamp.org/news/self-documenting-makefile/)
