@@ -40,24 +40,14 @@ kubectl get svc
 Run this command in a seperate terminal to allow connection to the ingress
 
 ```
-minikube service -n ingress-nginx ingress-nginx-controller
+./ssh-tunnel.sh
 ```
 
-Run `ps -ef | grep "docker@127.0.0.1"` to find the port used for proxying the
-ingress and then run a `curl` command to access the nginx server
+then run a `curl` command to access the nginx server
 
 ```
-curl -vvv -H "Host: hello.internal" localhost:55243/hello
+curl -vvv -H "Host: hello.internal" localhost:10080/hello
 ```
-
-Replace `55243` with the actual proxy port
-
-NOTE: Running `minikube tunnel` may also work but this requires admin
-      rights and I was trying to avoid that 
-
-TODO: Figure out if there is a better way to make this tunnel/proxy work!
-TODO: Test this on Linux rather than MacOS as that might remove a layer of
-indirection for the networking
 
 
 ## Setup 
@@ -217,6 +207,30 @@ kubectl delete ingress hello-ingress
 ```
 
 
+### Getting SSH Command
+
+The `minikube tunnel` command requires admin rights - I don't like this.  The 
+`minikube service` command can be used to create a tunnel but this just picks
+random ports, for example I ran this twice, one after the other and got this
+
+```
+ps -ef | grep docker@127.0.0.1
+  502 78255 62117   0  9:39am ttys014    0:00.00 grep ssh
+  502 78247 78234   0  9:39am ttys015    0:00.01 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -N docker@127.0.0.1 -p 56635 -i /Users/fiona/.minikube/machines/minikube/id_rsa -L 60101:10.101.8.218:80 -L 60102:10.101.8.218:443
+```
+
+Then this
+
+```
+ps -ef | grep docker@127.0.0.1
+  502 78417 62117   0  9:44am ttys014    0:00.00 grep docker@127.0.0.1
+  502 78389 78376   0  9:43am ttys015    0:00.01 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -N docker@127.0.0.1 -p 56635 -i /Users/fiona/.minikube/machines/minikube/id_rsa -L 60180:10.101.8.218:80 -L 60181:10.101.8.218:443
+```
+
+Using the above I was able to create the `ssh-tunnel.sh` script that does 
+essentially the same thing but uses known ports for redirecting to the 
+LoadBalancer endpoint for minikube.
+
 
 ## References
 
@@ -248,6 +262,7 @@ kubectl delete ingress hello-ingress
 * [Accessing HyperKit VM for Docker Desktop on Mac](https://stackoverflow.com/questions/39739560/how-to-access-the-vm-created-by-dockers-hyperkit)
 * [Image for nginx](https://hub.docker.com/_/nginx)
 * [Docker and localhost](https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach)
+* [Docker ps docs](https://docs.docker.com/engine/reference/commandline/ps/)
 
 
 ### Homebrew
@@ -279,3 +294,9 @@ kubectl delete ingress hello-ingress
 * [Phony targets](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html)
 * [Adding help for Makefile targets](https://gist.github.com/prwhite/8168133)
 * [Improved help generator](https://www.freecodecamp.org/news/self-documenting-makefile/)
+
+
+### Shell
+
+* [Running SSH without shell](https://unix.stackexchange.com/questions/100859/ssh-tunnel-without-shell-on-ssh-server)
+* 
