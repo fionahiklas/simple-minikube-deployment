@@ -52,20 +52,18 @@ curl -vvv -H "Host: hello.internal" localhost:10080/hello
 
 ## Setup 
 
-### Installation 
-
 This has been tested on an M1 Mac and an old x86 Mac, both running 
 MacOS 12.4.
 
 
-#### Docker
+### Docker
 
 Downloading [docker desktop](https://www.docker.com/products/docker-desktop/)
 
 Start Docker Desktop from the Launcher
 
 
-#### Homebrew
+### Homebrew
 
 The easiest way to get many of the scripts and utilies is to use
 [homebrew](https://brew.sh) I've followed the [untar anywhere](https://docs.brew.sh/Installation#untar-anywhere) approach as this doesn't require admin rights
@@ -75,7 +73,9 @@ Also the `$PATH` variable is set with homebrew at the end so it can't override
 anything that may be important from a security point of view
 
 
-#### Minikube
+### Minikube
+
+#### Installation
 
 Installed using homebrew
 
@@ -91,9 +91,7 @@ brew install kubectx
 ```
 
 
-### Startup
-
-#### Minikube
+#### Startup
 
 Start minikube using the following command
 
@@ -105,6 +103,40 @@ Enable the ingress addon
 
 ```
 minikube addons enable ingress
+```
+
+
+#### Cloud Registries
+
+For gcloud first logging in to make sure the credentials are up to date
+
+```
+gcloud auth application-default login
+```
+
+This will redirect to the browser and allow login (using SSO or similar) and then
+created the file `$HOME/.config/gcloud/application_default_credentials.json`
+
+Then enable cloud registries in Minikube with this command:
+
+```
+minikube addons configure registry-creds
+```
+
+This will give the following output/interactions
+
+```
+Do you want to enable AWS Elastic Container Registry? [y/n]: n
+
+Do you want to enable Google Container Registry? [y/n]: y
+-- Enter path to credentials (e.g. /home/user/.config/gcloud/application_default_credentials.json):/Users/fiona/.config/gcloud/application_default_credentials.json
+-- Do you want to change the GCR URL (Default https://gcr.io)? [y/n]: y
+-- Enter GCR URL (e.g. https://asia.gcr.io):https://eu.gcr.io/myproject
+
+Do you want to enable Docker Registry? [y/n]: n
+
+Do you want to enable Azure Container Registry? [y/n]: n
+✅  registry-creds was successfully configured
 ```
 
 
@@ -232,6 +264,11 @@ essentially the same thing but uses known ports for redirecting to the
 LoadBalancer endpoint for minikube.
 
 
+## Notes
+
+
+
+
 ## References
 
 ### k8s Manifests
@@ -255,6 +292,8 @@ LoadBalancer endpoint for minikube.
 * [Setup Ingress controller](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/)
 * [Howto use local docker images with minikube](https://stackoverflow.com/questions/42564058/how-to-use-local-docker-images-with-minikube)
 * [README section on using minikube docker for images](https://github.com/kubernetes/minikube/blob/0c616a6b42b28a1aab8397f5a9061f8ebbd9f3d9/README.md#reusing-the-docker-daemon)
+* [Adding cloud registries](https://minikube.sigs.k8s.io/docs/handbook/registry/)
+* [Adding certs](https://minikube.sigs.k8s.io/docs/handbook/untrusted_certs/)
 
 
 ### Docker 
@@ -263,6 +302,11 @@ LoadBalancer endpoint for minikube.
 * [Image for nginx](https://hub.docker.com/_/nginx)
 * [Docker and localhost](https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach)
 * [Docker ps docs](https://docs.docker.com/engine/reference/commandline/ps/)
+* [Docker attach or exec](https://stackoverflow.com/questions/30172605/how-do-i-get-into-a-docker-containers-shell)
+* [Docker attach docs](https://docs.docker.com/engine/reference/commandline/attach/)
+* [Docker bash image](https://hub.docker.com/_/bash)
+* [Docker run](https://docs.docker.com/engine/reference/commandline/run/)
+
 
 
 ### Homebrew
@@ -299,4 +343,9 @@ LoadBalancer endpoint for minikube.
 ### Shell
 
 * [Running SSH without shell](https://unix.stackexchange.com/questions/100859/ssh-tunnel-without-shell-on-ssh-server)
-* 
+
+
+### Cloud
+
+* [Gcloud application default login](https://cloud.google.com/sdk/gcloud/reference/auth/application-default)
+
