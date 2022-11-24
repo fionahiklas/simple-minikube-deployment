@@ -140,6 +140,30 @@ Do you want to enable Azure Container Registry? [y/n]: n
 ```
 
 
+#### Local registries
+
+You can add the following under the Docker Engine config on Docker desktop
+
+```
+  "insecure-registries": [
+    "localhost:5000",
+    "localhost:5555",
+    "host.docker.internal:5555"
+  ]
+```
+
+Then start a a docker registry locally using the following command
+
+```
+docker run -d -p 5555:5000 --name registry registry:2
+```
+
+You can apparently allow [insecure registries for minikube](https://stackoverflow.com/questions/43129110/how-can-i-allow-a-private-insecure-registry-to-be-used-inside-a-minikube-node)
+
+There is more information in the [minikube docs](https://minikube.sigs.k8s.io/docs/handbook/registry/)
+
+
+
 ### Development 
 
 #### Python setup
